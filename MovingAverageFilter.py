@@ -2,8 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from library import CalculateRot3D, CalculateVelPos3D
 ZERO_ERRORS = np.array([0.295, 0.546, 0.271, -0.541, -2.356, -2.227])
-
 DT = 50e-3
+
+windowsize = 7
 
 def MAFilter(Data, Data_MA, window=5):
     readings = np.zeros(shape=(window, Data.shape[1]))
@@ -31,7 +32,7 @@ VelMA = np.zeros_like(Acc)
 Pos = np.zeros_like(Acc)
 PosMA = np.zeros_like(Acc)
 
-MAFilter(Acc, AccMA, window=5)
+MAFilter(Acc, AccMA, window=windowsize)
 CalculateVelPos3D(Acc, Vel, Pos, DT)
 CalculateVelPos3D(AccMA, VelMA, PosMA, DT)
 
@@ -41,7 +42,7 @@ GyroMA = np.zeros_like(Gyro)
 Rot = np.zeros_like(Gyro)
 RotMA = np.zeros_like(Gyro)
 
-MAFilter(Gyro, GyroMA, window=5)
+MAFilter(Gyro, GyroMA, window=windowsize)
 CalculateRot3D(Gyro, Rot, DT)
 CalculateRot3D(GyroMA, RotMA, DT)
 
@@ -58,8 +59,10 @@ VelMAPlot = plt.subplot2grid((5,2), (3,1))
 PosMAPlot = plt.subplot2grid((5,2), (4,1))
 
 GyroPlot.plot(Gyro)
+GyroPlot.set_title("Unfiltered")
 RotPlot.plot(Rot)
 GyroMAPlot.plot(GyroMA)
+GyroMAPlot.set_title(f"Filtered \n window={windowsize}")
 RotMAPlot.plot(RotMA)
 
 [x, y, z] = AccPlot.plot(Acc)
@@ -70,4 +73,5 @@ AccMAPlot.plot(AccMA)
 VelMAPlot.plot(VelMA)
 PosMAPlot.plot(PosMA)
 
+plt.suptitle("Data V4 Moving Average Filter")
 plt.show()
