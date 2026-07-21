@@ -3,7 +3,7 @@ import numpy as np
 def CalculateVelPos3D(Acc, Vel, Pos, DT=50e-3):
     """
     Calculates Velocitty and position based on entered accelerometer data
-    
+
     Does not take into account orientation of sensor, inital displacement or speed.
     """
     for i in range(len(Vel)):
@@ -28,6 +28,9 @@ def CalculateRot3D(Gyro, Rot, DT=50e-3):
             Rot[i,:] = Rot[i-1,:] + (Gyro[i-1,:] * DT)
 
 def MAFilter(Data, Data_MA, window=5):
+    """
+    Outputs Moving Average Filtered Data using given window size
+    """
     readings = np.zeros(shape=(window, Data.shape[1]))
     readings[0:window, :] = Data[0:window, :]
     Data_MA[0,:] = Data[0,:]
@@ -42,6 +45,9 @@ def MAFilter(Data, Data_MA, window=5):
             Data_MA[i, :] = np.average(readings, axis=0)
 
 def printDataStats(Data, mean=1, var=0, std=1):
+    """
+    print mean, variance and standard deviation of each column of input data 
+    """
     if mean:
         with np.printoptions(precision=3):
             print(f"      Means: {np.mean(Data, axis=0)}")
