@@ -1,6 +1,11 @@
 import numpy as np
 
 def CalculateVelPos3D(Acc, Vel, Pos, DT=50e-3):
+    """
+    Calculates Velocitty and position based on entered accelerometer data
+    
+    Does not take into account orientation of sensor, inital displacement or speed.
+    """
     for i in range(len(Vel)):
         if i == 0:
             pass
@@ -13,6 +18,9 @@ def CalculateVelPos3D(Acc, Vel, Pos, DT=50e-3):
             Pos[i,:] = Pos[i-1,:] + (Vel[i-1,:] * DT)
 
 def CalculateRot3D(Gyro, Rot, DT=50e-3):
+    """
+    Calculates angle rotated by sensor based on Gyroscope data
+    """
     for i in range(len(Gyro)):
         if i == 0:
             pass

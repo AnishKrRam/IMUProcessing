@@ -4,6 +4,13 @@ from library import CalculateRot3D, CalculateVelPos3D
 ZERO_ERRORS = np.array([0.295, 0.546, 0.271, -0.541, -2.356, -2.227])
 DT = 50e-3
 
+# Data_V4 acceleerometer calculated z position drifts due to non comtensated rotations about y axis
+# Therefore, movement data needs to be corrected as per current angle of sensor
+# Postioning system coordinates therefore depend on initial orientation, unless magnetometer is included
+# Measuring position, without input fron motor encoder/GPS/other sensor measuring lower derivatives
+# is a form of dead reckoning, even with filters
+
+
 windowsize = 7
 
 def MAFilter(Data, Data_MA, window=5):
