@@ -11,9 +11,9 @@ def CalculateRot3D(Gyro, Rot, DT):
             Rot[i,:] = Rot[i-1,:] + (Gyro[i-1,:] * DT)
 
 
-Data1 = np.loadtxt("MPU_Data_V1_dt50.csv", delimiter=",", dtype=float, usecols=[3, 4, 5])
-Data2 = np.loadtxt("MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=[3, 4, 5])
-Data3 = np.loadtxt("MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=[3, 4, 5])
+Data1 = np.loadtxt("IMUData/MPU_Data_V1_dt50.csv", delimiter=",", dtype=float, usecols=[3, 4, 5])
+Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=[3, 4, 5])
+Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=[3, 4, 5])
 
 Gyro = Data2
 Gyro = Gyro - np.array([np.mean(Gyro[:,0]), np.mean(Gyro[:,1]), np.mean(Gyro[:,2])])

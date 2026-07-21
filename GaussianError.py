@@ -12,9 +12,9 @@ def printDataStats(Data, mean=1, var=0, std=1):
         with np.printoptions(precision=4, floatmode="fixed"):
             print(f"StandardDev: {np.std(Data, axis=0)}")
 
-Data1 = np.loadtxt("MPU_Data_V1_dt50.csv", delimiter=",", dtype=float)
-Data2 = np.loadtxt("MPU_Data_V2_dt50.csv", delimiter=",", dtype=float)
-Data3 = np.loadtxt("MPU_Data_V3_dt100.csv", delimiter=",", dtype=float)
+Data1 = np.loadtxt("IMUData/MPU_Data_V1_dt50.csv", delimiter=",", dtype=float)
+Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float)
+Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float)
 
 printDataStats(Data1, std=0)
 printDataStats(Data2, std=0)

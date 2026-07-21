@@ -19,10 +19,10 @@ def MAFilter(Data, Data_MA, window=5):
             readings[window-1, :] = Data[i, :]
             Data_MA[i, :] = np.average(readings, axis=0)
 
-Data1 = np.loadtxt("MPU_Data_V1_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
-Data2 = np.loadtxt("MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
-Data3 = np.loadtxt("MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=range(6))
-Data4 = np.loadtxt("MPU_Data_V4_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+Data1 = np.loadtxt("IMUData/MPU_Data_V1_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=range(6))
+Data4 = np.loadtxt("IMUData/MPU_Data_V4_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
 
 Acc = Data4[:, 0:3] - ZERO_ERRORS[0:3] - np.array([0,0,9.81])
 AccMA = np.zeros_like(Acc)
