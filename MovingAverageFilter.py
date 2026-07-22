@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 from library import CalculateRot3D, CalculateVelPos3D
 ZERO_ERRORS = np.array([0.295, 0.546, 0.271, -0.541, -2.356, -2.227])
 ZERO_ERRORS_V5 = np.array([-0.434, 0.567, 0.285, -0.508, -2.269,-2.172])
+ZERO_ERRORS_V7 = np.array([-0.42, 0.522, 0.296, -0.477, -2.388, -2.163])
 DT = 50e-3
 
-# Data_V4 acceleerometer calculated z position drifts due to non comtensated rotations about y axis
+# Data_V4 acceleerometer calculated z position drifts due to non compensated rotations about y axis
 # Therefore, movement data needs to be corrected as per current angle of sensor
 # Postioning system coordinates therefore depend on initial orientation, unless magnetometer is included
 # Measuring position, without input fron motor encoder/GPS/other sensor measuring lower derivatives
@@ -32,9 +33,9 @@ def MAFilter(Data, Data_MA, window=5):
 # Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
 # Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=range(6))
 # Data4 = np.loadtxt("IMUData/MPU_Data_V4_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
-Data6 = np.loadtxt("IMUData/MPU_Data_V6_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+Data7 = np.loadtxt("IMUData/MPU_Data_V7_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
 
-Acc = Data6[:, 0:3] - ZERO_ERRORS_V5[0:3] - np.array([0,0,9.81])
+Acc = Data7[:, 0:3] - ZERO_ERRORS_V7[0:3] - np.array([0,0,9.81])
 AccMA = np.zeros_like(Acc)
 Vel = np.zeros_like(Acc)
 VelMA = np.zeros_like(Acc)
@@ -45,7 +46,7 @@ MAFilter(Acc, AccMA, window=windowsize)
 CalculateVelPos3D(Acc, Vel, Pos, DT)
 CalculateVelPos3D(AccMA, VelMA, PosMA, DT)
 
-Gyro = Data6[:, 3:6]
+Gyro = Data7[:, 3:6]
 Gyro = Gyro - ZERO_ERRORS[3:6]
 GyroMA = np.zeros_like(Gyro)
 Rot = np.zeros_like(Gyro)

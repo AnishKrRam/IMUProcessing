@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 
 ZERO_ERRORS = np.array([0.295, 0.546, 0.271, -0.541, -2.356, -2.227])
 ZERO_ERRORS_V5 = np.array([-0.434, 0.567, 0.285, -0.508, -2.269,-2.172])
+ZERO_ERRORS_V7 = np.array([-0.42, 0.522, 0.296, -0.477, -2.388, -2.163])
+
 DT = 50e-3
 
 def CalculateVelPos3D(Acc, Vel, Pos, DT):
@@ -18,12 +20,12 @@ def CalculateVelPos3D(Acc, Vel, Pos, DT):
         else:
             Pos[i,:] = Pos[i-1,:] + (Vel[i-1,:] * DT)
 
-Data = np.loadtxt("IMUData/MPU_Data_V6_dt50.csv",
+Data = np.loadtxt("IMUData/MPU_Data_V7_dt50.csv",
                   delimiter=",", 
                   dtype=float,
                   usecols=range(3))
 
-Acc = Data - ZERO_ERRORS_V5[0:3] - np.array([0,0,9.81])
+Acc = Data - ZERO_ERRORS_V7[0:3] - np.array([0,0,9.81])
 Vel = np.zeros_like(Acc)
 Pos = np.zeros_like(Acc)
 
