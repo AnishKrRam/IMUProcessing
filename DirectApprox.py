@@ -17,7 +17,7 @@ def CalculateVelPos3D(Acc, Vel, Pos, DT):
         else:
             Pos[i,:] = Pos[i-1,:] + (Vel[i-1,:] * DT)
 
-Data = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv",
+Data = np.loadtxt("IMUData/MPU_Data_V5_dt50.csv",
                   delimiter=",", 
                   dtype=float,
                   usecols=range(3))

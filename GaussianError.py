@@ -15,14 +15,18 @@ def printDataStats(Data, mean=1, var=0, std=1):
 Data1 = np.loadtxt("IMUData/MPU_Data_V1_dt50.csv", delimiter=",", dtype=float)
 Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float)
 Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float)
+Data5 = np.loadtxt("IMUData/MPU_Data_V5_dt50.csv", delimiter=",", dtype=float)
 
 printDataStats(Data1, std=0)
 printDataStats(Data2, std=0)
 printDataStats(Data3, std=0)
+printDataStats(Data5, std=0)
 
 printDataStats(Data1, mean=0)
 printDataStats(Data2, mean=0)
 printDataStats(Data3, mean=0)
+printDataStats(Data5, mean=0)
+
 
 
 fig, ax = plt.subplots(3, 6)
