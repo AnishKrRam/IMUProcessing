@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from library import CalculateRot3D, CalculateVelPos3D
 ZERO_ERRORS = np.array([0.295, 0.546, 0.271, -0.541, -2.356, -2.227])
+ZERO_ERRORS_V5 = np.array([-0.434, 0.567, 0.285, -0.508, -2.269,-2.172])
 DT = 50e-3
 
 # Data_V4 acceleerometer calculated z position drifts due to non comtensated rotations about y axis
@@ -27,12 +28,13 @@ def MAFilter(Data, Data_MA, window=5):
             readings[window-1, :] = Data[i, :]
             Data_MA[i, :] = np.average(readings, axis=0)
 
-Data1 = np.loadtxt("IMUData/MPU_Data_V1_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
-Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
-Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=range(6))
-Data4 = np.loadtxt("IMUData/MPU_Data_V4_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+# Data1 = np.loadtxt("IMUData/MPU_Data_V1_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+# Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+# Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=range(6))
+# Data4 = np.loadtxt("IMUData/MPU_Data_V4_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+Data5 = np.loadtxt("IMUData/MPU_Data_V5_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
 
-Acc = Data4[:, 0:3] - ZERO_ERRORS[0:3] - np.array([0,0,9.81])
+Acc = Data5[:, 0:3] - ZERO_ERRORS_V5[0:3] - np.array([0,0,9.81])
 AccMA = np.zeros_like(Acc)
 Vel = np.zeros_like(Acc)
 VelMA = np.zeros_like(Acc)
@@ -43,7 +45,7 @@ MAFilter(Acc, AccMA, window=windowsize)
 CalculateVelPos3D(Acc, Vel, Pos, DT)
 CalculateVelPos3D(AccMA, VelMA, PosMA, DT)
 
-Gyro = Data4[:, 3:6]
+Gyro = Data5[:, 3:6]
 Gyro = Gyro - ZERO_ERRORS[3:6]
 GyroMA = np.zeros_like(Gyro)
 Rot = np.zeros_like(Gyro)
@@ -80,5 +82,5 @@ AccMAPlot.plot(AccMA)
 VelMAPlot.plot(VelMA)
 PosMAPlot.plot(PosMA)
 
-plt.suptitle("Data V4 Moving Average Filter")
+plt.suptitle("Data V5 Moving Average Filter")
 plt.show()

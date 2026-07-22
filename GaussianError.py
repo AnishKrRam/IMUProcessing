@@ -35,6 +35,6 @@ fig.suptitle('Distributitons of Measurements')
 for i in range(6):
     ax[0, i].hist(Data1[:,i], bins=20)
     ax[1, i].hist(Data2[:,i], bins=20)
-    ax[2, i].hist(Data3[:,i], bins=20)
+    ax[2, i].hist(Data5[:,i], bins=20)
 
 plt.show()
