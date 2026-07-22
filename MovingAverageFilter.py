@@ -32,9 +32,9 @@ def MAFilter(Data, Data_MA, window=5):
 # Data2 = np.loadtxt("IMUData/MPU_Data_V2_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
 # Data3 = np.loadtxt("IMUData/MPU_Data_V3_dt100.csv", delimiter=",", dtype=float, usecols=range(6))
 # Data4 = np.loadtxt("IMUData/MPU_Data_V4_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
-Data5 = np.loadtxt("IMUData/MPU_Data_V5_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
+Data6 = np.loadtxt("IMUData/MPU_Data_V6_dt50.csv", delimiter=",", dtype=float, usecols=range(6))
 
-Acc = Data5[:, 0:3] - ZERO_ERRORS_V5[0:3] - np.array([0,0,9.81])
+Acc = Data6[:, 0:3] - ZERO_ERRORS_V5[0:3] - np.array([0,0,9.81])
 AccMA = np.zeros_like(Acc)
 Vel = np.zeros_like(Acc)
 VelMA = np.zeros_like(Acc)
@@ -45,7 +45,7 @@ MAFilter(Acc, AccMA, window=windowsize)
 CalculateVelPos3D(Acc, Vel, Pos, DT)
 CalculateVelPos3D(AccMA, VelMA, PosMA, DT)
 
-Gyro = Data5[:, 3:6]
+Gyro = Data6[:, 3:6]
 Gyro = Gyro - ZERO_ERRORS[3:6]
 GyroMA = np.zeros_like(Gyro)
 Rot = np.zeros_like(Gyro)
@@ -82,5 +82,5 @@ AccMAPlot.plot(AccMA)
 VelMAPlot.plot(VelMA)
 PosMAPlot.plot(PosMA)
 
-plt.suptitle("Data V5 Moving Average Filter")
+plt.suptitle("Data V6 Moving Average Filter")
 plt.show()
