@@ -2,11 +2,15 @@ Data collected using MPU6050 with ESP32
 
 |   Data   |    Info                     |
 |----------|-----------------------------|
-| V1       | Static MPU
+| V1       | Static MPU, baud rate 9600  |
 | V2       | Static MPU                  |
 | V3       | Static MPU                  |
 | V4       | Moving MPU                  |
 | V5       | Static MPU, extra 22k pullup, Contamminated due to accidental movement while measurement|
+| V6       | Static MPU, extra 22k pullup|
+| V7       | Static MPU, extra 22k pullup, Baud rate at 115200|
+
+
 
 |   Data   |Means                                    |Standard Deviations                      |
 |----------|-----------------------------------------|-----------------------------------------|
@@ -15,3 +19,4 @@ Data collected using MPU6050 with ESP32
 | V3       |0.294  0.549 10.087 -0.534 -2.358 -2.228 |0.0204 0.0200 0.0310 0.1220 0.1456 0.1446|
 | V5       |-0.434  0.567 10.095 -0.508 -2.269 -2.172|0.0437 0.0351 0.0363 0.1231 0.1593 0.2611|
 | V6       |-0.415  0.526 10.107 -0.505 -2.322 -2.168|0.0266 0.0345 0.0347 0.1216 0.1357 0.1643|
+| V7       |-0.42   0.522 10.106 -0.477 -2.388 -2.163|0.0207 0.0205 0.0329 0.1158 0.1413 0.1519|
